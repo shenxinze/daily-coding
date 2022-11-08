@@ -1,4 +1,6 @@
-const resSuccess = (data, msg = '', code = 0, success = true) => {
+const userService = require('../services/userService')
+
+const resSuccess = (data = null, msg = '', code = 0, success = true) => {
   const obj = {
     code,
     success,
@@ -6,19 +8,34 @@ const resSuccess = (data, msg = '', code = 0, success = true) => {
   }
   return data ? Object.assign({}, obj, {data}) : obj
 }
+
+const resFail = (msg='请求失败，请稍后重试', code = 1, success = false) => {
+  return {
+    code,
+    success,
+    msg
+  }
+}
+
 const userControllers = {
-  login: (req, res) => {
+  login: async (req, res) => {
     const { username, password } = req.body
-    res.send(resSuccess())
+    const data = await userService.login(username, password)
+    if(data.length === 0){
+      res.send(resFail('用户名或密码错误'))
+    }else{
+      res.send(resSuccess())
+    }
   },
-  addUser: (req, res) => {
+  addUser: async (req, res) => {
     const { username, password, age } = req.body
+    const avatar = req.file ? `/${req.file.filename}` : '/default.jpg'
+    await userService.addUser(username, password, age, avatar)
     res.send(resSuccess())
   },
   updateUser: (req, res) => {
     const { username, password, age } = req.body
     const id = req.params.id
-    console.log(username, password, age, id)
     res.send(resSuccess())
   },
   deleteUser: (req, res) => {
