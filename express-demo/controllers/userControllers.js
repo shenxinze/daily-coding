@@ -33,18 +33,22 @@ const userControllers = {
     await userService.addUser(username, password, age, avatar)
     res.send(resSuccess())
   },
-  updateUser: (req, res) => {
+  updateUser: async (req, res) => {
     const { username, password, age } = req.body
     const id = req.params.id
+    const avatar = req.file ? `/${req.file.filename}` : '/default.jpg'
+    await userService.updateUser(id, username, password, age, avatar)
     res.send(resSuccess())
   },
-  deleteUser: (req, res) => {
+  deleteUser: async (req, res) => {
     const id = req.params.id
+    await userService.deleteUser(id)
     res.send(resSuccess())
   },
-  getUsers: (req, res) => {
-    const { page, size } = req.query
-    res.send(resSuccess([1,2,3,4]))
+  getUsers: async (req, res) => {
+    const { page, limit } = req.query
+    const data = await userService.getUsers(page, limit)
+    res.send(resSuccess(data))
   }
 }
 

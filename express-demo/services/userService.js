@@ -10,6 +10,20 @@ const userService = {
       age,
       avatar
     })
+  },
+  updateUser: (_id, username, password, age, avatar) => {
+    return userModel.updateOne({_id}, {
+      username,
+      password,
+      age,
+      avatar
+    })
+  },
+  deleteUser: (_id) => {
+    return userModel.deleteOne({_id})
+  },
+  getUsers: (page, limit) => {
+    return userModel.find({}, ['username', 'age', 'avatar']).sort({age: 1}).skip((page - 1) * limit).limit(limit)
   }
 }
 
