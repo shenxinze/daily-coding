@@ -1,4 +1,5 @@
 const userService = require('../services/userService')
+const JWT = require('../utils/JWT')
 
 const resSuccess = (data = null, msg = '', code = 0, success = true) => {
   const obj = {
@@ -24,6 +25,13 @@ const userControllers = {
     if(data.length === 0){
       res.send(resFail('用户名或密码错误'))
     }else{
+      // 设置token
+      const token = JWT.generate({
+        _id: data[0]._id,
+        username: data[0].username
+      }, '2h')
+      // 将token返回在header中
+      res.header('Authorization', token)
       res.send(resSuccess())
     }
   },
