@@ -9,14 +9,6 @@ const resSuccess = (data = null, msg = '', code = 0, success = true) => {
   return data ? Object.assign({}, obj, {data}) : obj
 }
 
-const resFail = (msg='请求失败，请稍后重试', code = 1, success = false) => {
-  return {
-    code,
-    success,
-    msg
-  }
-}
-
 const catgoryControllers = {
   addCatgory: async (req, res) => {
     const { name } = req.body
