@@ -1,0 +1,26 @@
+const chatGPTapi = async () => {
+  const { ChatGPTAPI } = await import('chatgpt')
+  return new ChatGPTAPI({
+    sessionToken: 'eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..up6V0yyfLTzOm-u5.SB9PSlSYP1LImKwAzZItZ5LOM7labN37XXtuSYDg1XXMfuZIbpSRWXjP0HJ0t9uMzGe8jPs78fHwumenEh1cp0SgqAER0q73YRq4fdntd_AcY1TA6-1SIZt4_y8mGcjXJQy4v0vxgh7yRCYADehg4-EIiRyhEweDf-kOjJVxhWUj-ijbqeKc-IfiBa6TaymE-2Q-MgA57R960h3qSwgOnuJj9-avwZgw7AkON0Ec2sxV_XR8nX_NC51SPNH1FwJLw04li7-42gelQVwLAwNrWr0l_Ag3Zby0WfzJML8peNMCSC6nbomejrjSVlt-9F6eZeQvikqxBDOv1xl9I6KzoEGEe7Mkfg7DMomzJ99Z9tEovq_YTKtcBQ5441AyboTOFusqr-IMMwaSuGX-5eFEonvWExg6eTXUJbFxcTrWnUd09lzT9tm-nemJoAofZgATXcbboasg0F_7-BilHGHOMyKyzZqxjQ-WcUDB7H6QBFrMcY4IjSqi9C-xhcVvcS3x67NgLQ7Va_uMpDf0MS4A-10zPWCLmL9VjOjXVbfe3lsdQyFrWb5sJWrJcaZYBV667vtQFdZ7-Tw-7d9Qyv5QY8hamZzNJUVrxK7IGdiB2pb0nAzISUPT9q_hcKo0zIt2CQ_qhOwdL1Sv-K92M9MPtWlhq4G6LGNAjS7zG7dY5Wk4q9cbFa5L84_hx-dDzxZv6Xciacm5zpohC5qfhtHlqcb26orXY5LZhubLdZh64KI-KFpZ2C_sL_e-G6HSuCRn9BWR64VErodOgvvWgEs86oc3H7z7pc2AUTLLykEmXdjE7EbDVeOLyfa6uSG_FFOc9qvb8AdLoIRLyY6JEpU6oyGHx9yl5zBkXUFQHAFzfM27dcXedkbw42gvtyCLrjkkF5nUUfdKW6sIaGkt67L9bt8KYa0x1GYL8Dh2ZZBfdSRjmnya4EFutVO1n4z8IBkM15QI9EmpUQWZxi6sj3FXGPGnIpwFYRVBHDqJCSuA63aX7MVyb1IWCxAbPHhLMSTZwqTq3RgIWtdBKY4Q_JpYVARTbQm2twIUCzBuCaPXTI5TEpAtpvsbr_9kMUyuNAEJSi3l1PZO_QjMdtm7EbC7JL_DzDfUHgt-e55BtLvNXNh4LPbDeu63_9SUOMtdRC0CVrCuMy1XS8PztZb-_BxDthxwuHAl7EglLa5SVwDHAkKz_sKQzABa2HB92MqWo-uzDGTHcKuDMjuZdbkL0TYsEO8OhmqjugXvy1KkZSyqfL_PWbyXKziHyxp9z33eL2OM2VzmfCg6Wq73DRxMJCPXLn7-pO6bDL5M5QCGciko56f3PPnCYYuXhhVTolSNSwAmQM4Uo6Adeazzwa4ai_hLDEEeM88uxcRVfNUH0NiG4WfjPyZx9FihEyT_Y_j5W7vBnoClOx8GwbQTd9KqnLF26UV1DPWs9rpFZTqMfUmpW48NeHVJy2IyZ7VrkTyAyKoKUBJvQ8PR-Z8vNIbtjo5MJlK4EOD2yWYowhQgDtoofFc7XUo11SOPyLKC2ZEzQrKZkQZNSmHCTUmDma33nf2oT4_KZJsvRHqpWzM--jGVpmzMLpKJ-Xh0B18ofXRohPiJo5nk8hiw-5jeYnNAmkkkAoGFHTgPpGzj0FbOA8fKP0fiZPMebgZoOb2VgWNhvHcbOxOlMY4vkBbLfRRquCF_sxhyuwezgVTMvsNoKkvkXzFtbQWzWsmDhmtg6wpUbNKRFkaaWMjkr3hQKbTnDa6vMcsWUaevgExw3YNlyYHSKuvPIepbqx_OT984oGGaZGZcrjzYuOZO2xgvb8sFdqEj4du_fzQTzLebU0eR8Q9DAV-Fgiv8P4adabdoSM9uTfedfy3FZtKVCtoUUzqJggXOLLljTLdELDUhx6MDLJzFSetzmv-g3XniYaY26TLHV5YoE13NxW5lmE3Q-hlBQJMcqlPcs3DzbEIAXp5tWXDNbZ4u5SSq9qQV0toM3s5dDz_XXjxD6zP7dvEdBqZfjOvNCgq-paktaP2l541uL1fVXt3KnHEJHMlfYwVc9Xgd3cAoUWY_HxgxKI6wFtAQKoustNx4VlswgIaNbCkiBZ9vEXHZKzpoDys6MRrRS7jnE4TOjDI52BslaQ8MRao86XBGB_k9dgtpNXiuA22WUnHaUi4J2UvbgE7X4dR7jiTmHee4sDgS8W6iADupQduD0lfas-_bc4CtNGhBMlMCZbZ8IPT2agc5Pa3QMN1UWSaL8xDTV1yvj54eEGJDlSHphjsQGwKAe5FReSQzAmda9iGLUlOpiZnlvk25Dl7JqJrEwYQTRhEYXerYQ2LydlArvqL9boRK.TEeeRbwcPyccnFR7Vd6bwQ'
+  })
+}
+
+const resSuccess = (data = null, msg = '', code = 0, success = true) => {
+  const obj = {
+    code,
+    success,
+    msg
+  }
+  return data ? Object.assign({}, obj, {data}) : obj
+}
+
+const chatGPTControllers = {
+  conversation: async (req, res) => {
+    const { question } = req.body
+    const api = await chatGPTapi()
+    const data = await api.sendMessage(question)
+    res.send(resSuccess({ data }))
+  }
+}
+
+module.exports = chatGPTControllers
