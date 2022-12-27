@@ -7,7 +7,6 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var catgoryRouter = require('./routes/catgory');
-var chatGPTRouter = require('./routes/chatGPT');
 var openaiRouter = require('./routes/openai');
 const JWT = require('./utils/JWT');
 
@@ -52,7 +51,6 @@ app.use('/', indexRouter);
 app.use('/', usersRouter);
 app.use('/', catgoryRouter);
 app.use('/', openaiRouter);
-app.use('/', chatGPTRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

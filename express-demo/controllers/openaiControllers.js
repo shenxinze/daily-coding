@@ -1,7 +1,7 @@
 const { OpenAIApi, Configuration } = require('openai')
 
 const config = new Configuration({
-  apiKey: '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'
+  apiKey: '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'
 })
 
 const openai = new OpenAIApi(config)
@@ -24,6 +24,16 @@ const openaiControllers = {
       size
     })
     res.send(resSuccess({ imgUrl: data.data}))
+  },
+  completion: async (req, res) => {
+    const { prompt, type } = req.body
+    const { data } = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt: `${prompt} 翻译成${type === 0 ? '汉语' : '英语'}`
+    })
+    let str = data.choices[0].text
+    str = str.replace('\n\n', '').replace('：', '')
+    res.send(resSuccess({ data: str}))
   }
 }
 

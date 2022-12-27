@@ -11,6 +11,9 @@ import App from './App.vue'
 
 const app = createApp(App)
 
+import { createPinia } from 'pinia'
+app.use(createPinia())
+
 app.use(router)
 app.use(ElementPlus, { locale })
 
