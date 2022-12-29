@@ -1,7 +1,7 @@
 const { OpenAIApi, Configuration } = require('openai')
 
 const config = new Configuration({
-  apiKey: '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'
+  apiKey: ''
 })
 
 const openai = new OpenAIApi(config)
@@ -16,6 +16,10 @@ const resSuccess = (data = null, msg = '', code = 0, success = true) => {
 }
 
 const openaiControllers = {
+  listModels: async (req, res) => {
+    const { data } = await openai.listModels()
+    res.send(resSuccess({ data: data.data}))
+  },
   createImg: async (req, res) => {
     const { prompt, n = 1, size = '256x256' } = req.body
     const { data } = await openai.createImage({
@@ -26,14 +30,19 @@ const openaiControllers = {
     res.send(resSuccess({ imgUrl: data.data}))
   },
   completion: async (req, res) => {
-    const { prompt, type } = req.body
+    const { prompt } = req.body
     const { data } = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: `${prompt} 翻译成${type === 0 ? '汉语' : '英语'}`
+      model: 'text-davinci-001',
+      prompt,
+      temperature: 0.5,
+      max_tokens: 2000,
+      best_of: 1,
+      frequency_penalty: 0,
+      presence_penalty: 0,
+      logprobs: 0,
+      top_p: 1
     })
-    let str = data.choices[0].text
-    str = str.replace('\n\n', '').replace('：', '')
-    res.send(resSuccess({ data: str}))
+    res.send(resSuccess({ data: data.choices[0].text}))
   }
 }
 
