@@ -1,0 +1,18 @@
+:root {
+  --color: #fff;
+}
+
+body {
+  background-color: var(--color);
+  user-select: none;
+}
+
+body,
+html,
+#root,
+.App {
+  height: 100%;
+}
+img {
+  -webkit-user-drag: none;
+}
