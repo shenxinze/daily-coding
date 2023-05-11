@@ -1,0 +1,31 @@
+const buy = document.querySelector('.buy')
+const back = document.querySelector('.back-button')
+// t1时间轴动画
+const t1 = gsap.timeline()
+t1.to('.car-1', { top: '10%', duration: 1 })
+t1.to('.menu', { left: 30, duration: 1 }, 0)
+t1.to('.profile', { right: 30, duration: 1}, 0)
+t1.to('.container h1', { bottom: '25%', duration: 1 }, 0.3)
+t1.to('.container p', { bottom: '14%', duration: 1 }, 0.4)
+t1.from('.buy', { scale: 0, duration: 1 }, 0.6)
+// t2时间轴动画
+const t2 = gsap.timeline().paused(true).reversed(true)
+t2.to('.car-1', { top: '-60%', duration: 1 })
+t2.to('.menu', { left: -30, duration: 1 }, 0)
+t2.to('.profile', { right: -30, duration: 1 }, 0)
+t2.to('.container h1', { bottom: '-25%', duration: 1 }, 0)
+t2.to('.container p', { bottom: '-14%', duration: 1 }, 0)
+t2.to('.buy i', { scale: 0, duration: 0.3 }, 0)
+t2.to('.buy', { scale: 16, width: 378, duration: 0.6 }, 0.15)
+t2.to('.back-button', { bottom: '5%', duration: 1}, 0.5)
+t2.to('.car-final', { left: '50%', duration: 1 }, 0.5)
+t2.to('.container h2', { left: '60%', duration: 1 }, 0.5)
+t2.to('.summary', { left: '52%', duration: 1 }, 0.6)
+t2.to('.summary-2', { left: '52%', duration: 1 }, 0.7)
+
+buy.addEventListener('click', () => {
+  t2.play()
+})
+back.addEventListener('click', () => {
+  t2.reverse()
+})
