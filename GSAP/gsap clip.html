@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			.box {
+				width: 100px;
+				height: 100px;
+				background-color: blue;
+			}
+			.container {
+				border: 1px solid #000;
+				width: 200px;
+				height: 200px;
+				margin-left: 40%;
+				margin-top: 10%;
+				transform: rotate(-30deg);
+			}
+			.demo {
+				width: 500px;
+				height: 350px;
+				background-color: skyblue;
+				margin: 0 auto;
+				transition: 0.3s ease-in;
+			}
+			.active {
+				transform: scale(1.5);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container"></div>
+		<div class="box"></div>
+		<div style="height: 100vh"></div>
+		<div class="demo"></div>
+		<div style="height: 100vh"></div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/Flip.min.js"></script>
+		<script>
+			const container = document.querySelector('.container')
+			const box = document.querySelector('.box')
+			document.addEventListener('click', () => {
+				const state = Flip.getState('.box')
+				container.appendChild(box)
+				Flip.from(state, {
+					duration: 1,
+					ease: 'power1.out'
+				})
+			})
+
+			gsap.to('.demo', {
+				// duration: 0.8,
+				// scale: 1.2,
+				scrollTrigger: {
+					trigger: '.demo',
+					toggleClass: 'active'
+					// onEnter: dom => dom.trigger.classList.add('active')
+					// start: 'center center',
+					// pin: false,
+					// scrub: true,
+					// markers: true
+				}
+			})
+		</script>
+	</body>
+</html>

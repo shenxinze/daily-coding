@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>gspa标记文字选中</title>
+	</head>
+	<style>
+		h1 {
+			text-align: center;
+			margin-bottom: 100px;
+		}
+
+		main {
+			max-width: 45%;
+			margin: 80px auto;
+		}
+
+		p {
+			font-size: 1.5rem;
+			line-height: 1.5;
+		}
+
+		span {
+			background-image: linear-gradient(yellow, yellow);
+			background-size: 0% 100%;
+			background-repeat: no-repeat;
+			transition: background-size 1s ease-in;
+		}
+
+		.active {
+			background-size: 100% 100%;
+		}
+	</style>
+	<body>
+		<main>
+			<h1>THE CODE CREATIVE: Image Alt Text</h1>
+			<p>
+				Image Alt Text can often seem like an afterthought. What's the point of
+				creating alt text once our images are already visibly working on our
+				site? Alt text seems so simple at first glance that web developers can
+				take it for granted without realizing how beneficial it can be for
+				accessibility and SEO. By the end of this article, you'll have a better
+				understanding of what image alt text is and why it's so vital. Writing
+				SEO-friendly image alt text helps us get the most out of our images in
+				Google Image Search, increases our rankings in Google Web Search, and
+				allows our websites to be accessible to visually impaired users.
+			</p>
+			<p>
+				Alt text, also known as alternative text, is used by screen readers and
+				search engines to determine what an image is all about. It describes the
+				content of an image and, hopefully, places it in a context, i.e., the
+				context of the website or web page it's part of.
+			</p>
+			<p>
+				<span
+					>You might have also heard this described as being an “alt tag”.</span
+				>
+				However, this seems like a misnomer to me. I prefer to use the term “alt
+				text” or “alt attribute”. Although we are “tagging” the image in a way,
+				an HTML "tag" is technically an element enclosed in angle brackets such
+				as an h1.
+			</p>
+			<p>
+				In the world of SEO, one of the most important things we can do is
+				create a page accessible to search engines and users. This means
+				creating alt text for each image on our site, ideally including keywords
+				related to our content.
+			</p>
+			<p>
+				In terms of SEO, web crawlers (that index and rank sites) have to rely
+				on image processing algorithms.
+				<span
+					>Search engine crawlers don't visually understand and interpret images
+					in the same way a sighted user would.</span
+				>
+			</p>
+			<p>
+				As we can imagine, by omitting this information from our images, there's
+				less of a chance that Google will index them. When we say "index", we
+				mean that these images won't show up in the Google Image Search results.
+			</p>
+			<p>
+				Alt text is also an opportunity to use any keyword or keywords being
+				targeted for SEO purposes.
+				<span
+					>While we don't want to overdo it and stuff our alt text with these
+					keywords, it is a good idea to use them in at least an image or two on
+					the page.</span
+				>
+			</p>
+		</main>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+		<script>
+			const list = gsap.utils.toArray('span')
+			list.forEach(span => {
+				ScrollTrigger.create({
+					trigger: span,
+					start: 'top 85%',
+					markers: false,
+					// toggleClass: 'active', // 滚动方向切换会失去活动的类 此时可以使用 onEnter 代替 达到始终保持 active 类的目的
+					onEnter: () => span.classList.add('active')
+				})
+			})
+		</script>
+	</body>
+</html>
