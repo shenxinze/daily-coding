@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>mask scrolling</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			section {
+				position: relative;
+				width: 100%;
+				height: 100vh;
+				display: flex;
+				align-items: center;
+				font-size: 32px;
+				padding: 20px 30px;
+				background-color: skyblue;
+			}
+			section:nth-child(even) {
+				justify-content: flex-end;
+				background-color: black;
+				color: #fff;
+			}
+			.title {
+				position: relative;
+			}
+			.title::before {
+				content: '';
+				width: 100%;
+				height: 100%;
+				background-color: #f60;
+				position: absolute;
+				left: 0;
+				top: 0;
+				transform-origin: right;
+				transition: 0.5s;
+				transition-delay: 0s;
+			}
+			section .title:last-child {
+				margin-top: 20px;
+			}
+			section .title:last-child::before {
+				background-color: #f20;
+			}
+			.title.active::before {
+				transform: scaleX(0);
+				transition-delay: 0.5s;
+			}
+		</style>
+	</head>
+	<body>
+		<section>
+			<div>
+				<h2 class="title">这里是h2标题</h2>
+				<h4 class="title">这里是h4文字描述内容...</h4>
+			</div>
+		</section>
+		<section>
+			<div>
+				<h2 class="title">这里是h2标题</h2>
+				<h4 class="title">这里是h4文字描述内容...</h4>
+			</div>
+		</section>
+		<section>
+			<div>
+				<h2 class="title">这里是h2标题</h2>
+				<h4 class="title">这里是h4文字描述内容...</h4>
+			</div>
+		</section>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+		<script>
+			const h2List = gsap.utils.toArray('.title')
+			h2List.forEach((text, i) => {
+				ScrollTrigger.create({
+					trigger: text,
+					toggleClass: 'active',
+					start: 'top 90%',
+					end: 'top, 20%',
+					markers: true
+				})
+			})
+		</script>
+	</body>
+</html>

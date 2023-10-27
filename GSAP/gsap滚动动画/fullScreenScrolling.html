@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>GSAP-全屏滚动</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			.full-panel {
+				display: block;
+				height: 100vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 4em;
+			}
+			.panel-1 {
+				background-color: #5bd1d7;
+			}
+			.panel-2 {
+				background-color: #348498;
+			}
+			.panel-3 {
+				background-color: #004d61;
+			}
+			.panel-4 {
+				background-color: #ff502f;
+			}
+			.panel-5 {
+				background-color: #2694ab;
+			}
+			.panel-6 {
+				background-color: #248888;
+			}
+		</style>
+	</head>
+	<body>
+		<section class="full-panel panel-1">panel 1</section>
+		<section class="full-panel panel-2">panel 2</section>
+		<section class="full-panel panel-3">panel 3</section>
+		<section class="full-panel panel-4">panel 4</section>
+		<section class="full-panel panel-5">panel 5</section>
+		<section class="full-panel panel-6">panel 6</section>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+		<script>
+			gsap.registerPlugin(ScrollTrigger)
+			const panels = gsap.utils.toArray('.full-panel')
+			const tops = panels.map(panel =>
+				ScrollTrigger.create({
+					trigger: panel,
+					start: 'top top'
+				})
+			)
+			panels.forEach((panel, i) => {
+				ScrollTrigger.create({
+					trigger: panel,
+					start: () =>
+						panel.offsetHeight < window.innerHeight
+							? 'top top'
+							: 'bottom bottom',
+					pin: true,
+					pinSpacing: false,
+					markers: false
+				})
+			})
+			ScrollTrigger.create({
+				snap: {
+					snapTo: (progress, self) => {
+						const panelStarts = tops.map(st => st.start)
+						const snapScroll = gsap.utils.snap(panelStarts, self.scroll())
+						return gsap.utils.normalize(
+							0,
+							ScrollTrigger.maxScroll(window),
+							snapScroll
+						)
+					}
+				},
+				duration: 0.5
+			})
+		</script>
+	</body>
+</html>
