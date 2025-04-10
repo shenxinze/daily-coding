@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        width: 200px;
+        height: 200px;
+        background: conic-gradient(#333 0, #333 100%);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+      .container.done {
+        background: #0f0 !important;
+      }
+      .container::before {
+        content: '';
+        border-radius: 50%;
+        position: absolute;
+        inset: 14px;
+        background-color: #222;
+      }
+      #number {
+        position: relative;
+        z-index: 100;
+        color: #fff;
+        font-size: 3em;
+        text-align: center;
+      }
+      #number span {
+        font-size: 0.5em;
+      }
+      .container.done #number {
+        font-size: 4em;
+        line-height: 1em;
+      }
+      .container.done #number i {
+        transform: translateY(-10%);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <i></i>
+      <h2 id="number"></h2>
+    </div>
+    <script>
+      let number = document.getElementById('number')
+      let container = document.querySelector('.container')
+      let i = 0
+      const body = document.querySelector('body')
+      let interval = null
+      const animate = () => {
+        if (i > 100) {
+          clearInterval(interval)
+          container.classList.add('done')
+          number.innerHTML = '100<span>%</span>'
+          return
+        }
+        container.style.background = `conic-gradient(#f5036c ${i}%, #333 0%)`
+        number.innerHTML = i + '<span>%</span>'
+        i++
+      }
+
+      body.addEventListener('click', () => {
+        container.classList.add('active')
+        interval = setInterval(animate, 100)
+      })
+    </script>
+  </body>
+</html>
